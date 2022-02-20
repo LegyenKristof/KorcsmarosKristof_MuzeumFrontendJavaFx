@@ -3,13 +3,13 @@ package com.example.muzeumfrontendjavafx;
 public class Festmeny {
     private int id, year;
     private String title;
-    private boolean onDisplay;
+    private boolean on_display;
 
-    public Festmeny(int id, String title, int year, boolean onDisplay) {
+    public Festmeny(int id, String title, int year, boolean on_display) {
         this.id = id;
         this.year = year;
         this.title = title;
-        this.onDisplay = onDisplay;
+        this.on_display = on_display;
     }
 
     public int getId() {
@@ -37,17 +37,17 @@ public class Festmeny {
     }
 
     public boolean isOnDisplay() {
-        return onDisplay;
+        return on_display;
     }
 
     public void setOnDisplay(boolean onDisplay) {
-        this.onDisplay = onDisplay;
+        this.on_display = onDisplay;
     }
 
     @Override
     public String toString() {
         String s = "on display";
-        if(!onDisplay) s = "not on display";
+        if(!on_display) s = "not on display";
         return String.format("%s\t\t%d\t\t%s", title, year, s);
     }
 }

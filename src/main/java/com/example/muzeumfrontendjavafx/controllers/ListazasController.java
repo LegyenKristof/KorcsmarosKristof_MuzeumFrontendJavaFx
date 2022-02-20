@@ -4,6 +4,7 @@ import com.example.muzeumfrontendjavafx.Api;
 import com.example.muzeumfrontendjavafx.Festmeny;
 import com.example.muzeumfrontendjavafx.Szobor;
 import javafx.fxml.FXML;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
@@ -36,7 +37,14 @@ public class ListazasController extends Controller{
 
     @FXML
     public void szoborHozzaadas(MouseEvent mouseEvent) {
+        try {
+            Controller c = ujAblak("szobor-hozzaadas-view.fxml", "Új szobor",260, 200);
 
+            c.getStage().setOnCloseRequest(event -> listazas());
+            c.getStage().show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -51,7 +59,14 @@ public class ListazasController extends Controller{
 
     @FXML
     public void festmenyHozzaadas(MouseEvent mouseEvent) {
+        try {
+            Controller c = ujAblak("festmeny-hozzaadas-view.fxml", "Új festmény",285, 192);
 
+            c.getStage().setOnCloseRequest(event -> listazas());
+            c.getStage().show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

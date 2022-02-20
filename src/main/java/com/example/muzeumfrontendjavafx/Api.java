@@ -35,4 +35,30 @@ public class Api {
         Type type = new TypeToken<List<Festmeny>>(){}.getType();
         return jsonConvert.fromJson(json,type);
     }
+
+    public static Szobor addStatue(Szobor s) throws IOException {
+        Gson jsonConvert = new Gson();
+        String json = jsonConvert.toJson(s);
+        Response response = RequestHandler.post(STATUE_API_URL, json);
+
+        String jsonResponse = response.getContent();
+        if (response.getResponseCode() >= 400){
+            String message = jsonConvert.fromJson(jsonResponse, ApiError.class).getMessage();
+            throw new IOException(message);
+        }
+        return jsonConvert.fromJson(jsonResponse, Szobor.class);
+    }
+
+    public static Festmeny addPainting(Festmeny f) throws IOException {
+        Gson jsonConvert = new Gson();
+        String json = jsonConvert.toJson(f);
+        Response response = RequestHandler.post(PAINTING_API_URL, json);
+
+        String jsonResponse = response.getContent();
+        if (response.getResponseCode() >= 400){
+            String message = jsonConvert.fromJson(jsonResponse, ApiError.class).getMessage();
+            throw new IOException(message);
+        }
+        return jsonConvert.fromJson(jsonResponse, Festmeny.class);
+    }
 }
