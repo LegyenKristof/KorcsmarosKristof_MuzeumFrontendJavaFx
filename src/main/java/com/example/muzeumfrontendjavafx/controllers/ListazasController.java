@@ -1,9 +1,9 @@
-package com.example.muzeumfrontendjavafx;
+package com.example.muzeumfrontendjavafx.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class ListazasController {
     @FXML
     private Label welcomeText;
 

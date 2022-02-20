@@ -5,4 +5,6 @@ module com.example.muzeumfrontendjavafx {
 
     opens com.example.muzeumfrontendjavafx to javafx.fxml;
     exports com.example.muzeumfrontendjavafx;
+    exports com.example.muzeumfrontendjavafx.controllers;
+    opens com.example.muzeumfrontendjavafx.controllers to javafx.fxml;
 }
