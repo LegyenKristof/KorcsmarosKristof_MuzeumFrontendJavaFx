@@ -54,7 +54,25 @@ public class ListazasController extends Controller{
 
     @FXML
     public void szoborTorles(MouseEvent mouseEvent) {
-
+        Szobor s = listViewSzobrok.getSelectionModel().getSelectedItem();
+        if(s == null){
+            alert("Jelöljön ki egy elemet a törléshez");
+            return;
+        }
+        if (!confirm("Biztos törli?")) {
+            return;
+        }
+        try {
+            if(Api.deleteStatue(s.getId())){
+                alert("Sikeres törlés");
+            }
+            else{
+                alert("Sikertelen törlés");
+            }
+            listazas();
+        } catch (IOException e) {
+            hibaKiir(e);
+        }
     }
 
     @FXML
@@ -76,6 +94,24 @@ public class ListazasController extends Controller{
 
     @FXML
     public void festmenyTorles(MouseEvent mouseEvent) {
-
+        Festmeny f = listViewFestmenyek.getSelectionModel().getSelectedItem();
+        if(f == null){
+            alert("Jelöljön ki egy elemet a törléshez");
+            return;
+        }
+        if (!confirm("Biztos törli?")) {
+            return;
+        }
+        try {
+            if(Api.deletePainting(f.getId())){
+                alert("Sikeres törlés");
+            }
+            else{
+                alert("Sikertelen törlés");
+            }
+            listazas();
+        } catch (IOException e) {
+            hibaKiir(e);
+        }
     }
 }
