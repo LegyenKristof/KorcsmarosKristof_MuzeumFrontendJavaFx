@@ -85,4 +85,30 @@ public class Api {
         }
         return response.getResponseCode() == 204;
     }
+
+    public static Szobor editStatue(Szobor s) throws IOException {
+        Gson jsonConvert = new Gson();
+        String json = jsonConvert.toJson(s);
+        Response response = RequestHandler.put(STATUE_API_URL + "/" + s.getId(), json);
+
+        String jsonResponse = response.getContent();
+        if (response.getResponseCode() >= 400){
+            String message = jsonConvert.fromJson(jsonResponse, ApiError.class).getMessage();
+            throw new IOException(message);
+        }
+        return jsonConvert.fromJson(jsonResponse, Szobor.class);
+    }
+
+    public static Festmeny editPainting(Festmeny f) throws IOException {
+        Gson jsonConvert = new Gson();
+        String json = jsonConvert.toJson(f);
+        Response response = RequestHandler.put(PAINTING_API_URL + "/" + f.getId(), json);
+
+        String jsonResponse = response.getContent();
+        if (response.getResponseCode() >= 400){
+            String message = jsonConvert.fromJson(jsonResponse, ApiError.class).getMessage();
+            throw new IOException(message);
+        }
+        return jsonConvert.fromJson(jsonResponse, Festmeny.class);
+    }
 }

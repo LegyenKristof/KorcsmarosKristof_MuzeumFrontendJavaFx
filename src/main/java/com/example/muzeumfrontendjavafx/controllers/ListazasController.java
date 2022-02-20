@@ -49,7 +49,20 @@ public class ListazasController extends Controller{
 
     @FXML
     public void szoborModositas(MouseEvent mouseEvent) {
-
+        Szobor s = listViewSzobrok.getSelectionModel().getSelectedItem();
+        if(s == null){
+            alert("Jelöljön ki egy elemet a módosításhoz");
+            return;
+        }
+        try {
+            Controller c = ujAblak("szobor-modositas-view.fxml", "Szobor módosítása",260, 200);
+            System.out.println("ELÉR IDE_----------------------------------------------");
+//            c.setSzobor(s);
+            c.getStage().setOnCloseRequest(event -> listazas());
+            c.getStage().show();
+        } catch (Exception e) {
+            hibaKiir(e);
+        }
     }
 
     @FXML
@@ -89,7 +102,19 @@ public class ListazasController extends Controller{
 
     @FXML
     public void festmenyModositas(MouseEvent mouseEvent) {
-
+        Festmeny f = listViewFestmenyek.getSelectionModel().getSelectedItem();
+        if(f == null){
+            alert("Jelöljön ki egy elemet a módosításhoz");
+            return;
+        }
+        try {
+            FestmenyModositasController c = (FestmenyModositasController) ujAblak("festmeny-modositas-view.fxml", "Festmény módosítása",285, 192);
+            c.setFestmeny(f);
+            c.getStage().setOnCloseRequest(event -> listazas());
+            c.getStage().show();
+        } catch (Exception e) {
+            hibaKiir(e);
+        }
     }
 
     @FXML
