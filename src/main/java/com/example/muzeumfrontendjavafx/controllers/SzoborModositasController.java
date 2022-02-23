@@ -7,6 +7,8 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
+import java.util.List;
+
 public class SzoborModositasController extends Controller{
     @FXML
     public TextField textFieldPerson;
@@ -26,6 +28,7 @@ public class SzoborModositasController extends Controller{
     }
 
     public void initialize(){
+        szobor = ListazasController.szobor;
         textFieldPerson.setText(szobor.getPerson());
         spinnerHeight.getValueFactory().setValue(szobor.getHeight());
         spinnerPrice.getValueFactory().setValue(szobor.getPrice());
@@ -50,6 +53,7 @@ public class SzoborModositasController extends Controller{
                 if (modositott != null){
                     alert("Sikeres módosítás");
                     szobor = modositott;
+                    ListazasController.szobor = szobor;
                 } else {
                     alert("Sikertelen módosítás");
                 }

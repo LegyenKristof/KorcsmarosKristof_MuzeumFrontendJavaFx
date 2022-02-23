@@ -17,6 +17,8 @@ public class ListazasController extends Controller{
     public ListView<Szobor> listViewSzobrok;
     @FXML
     public ListView<Festmeny> listViewFestmenyek;
+    public static Szobor szobor;
+    public static Festmeny festmeny;
 
     public void initialize(){
         listazas();
@@ -56,11 +58,13 @@ public class ListazasController extends Controller{
         }
         try {
             Controller c = ujAblak("szobor-modositas-view.fxml", "Szobor módosítása",260, 200);
-            System.out.println("ELÉR IDE_----------------------------------------------");
-//            c.setSzobor(s);
+            szobor = s;
+
             c.getStage().setOnCloseRequest(event -> listazas());
             c.getStage().show();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println(e.getCause());
             hibaKiir(e);
         }
     }
